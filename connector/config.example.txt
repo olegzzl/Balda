@@ -1,0 +1,5 @@
+# Скопируй этот файл как config.txt и впиши свои значения.
+# Ключ API берётся в Google Cloud Console (шаги в README.txt).
+API_KEY=сюда_вставить_ключ_API
+# Ссылка на стрим (или просто ID видео, 11 символов):
+VIDEO_URL=https://www.youtube.com/watch?v=XXXXXXXXXXX
