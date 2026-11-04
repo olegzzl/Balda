@@ -12291,42 +12291,31 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
       starsOn && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Starfield, {}),
       /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "balda-content", children: [
         /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { className: "balda-header", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h1", { className: "balda-title", children: "\u041F\u0438\u0448\u0438 \u0441\u0432\u043E\u0451 \u0441\u043B\u043E\u0432\u043E \u0432 \u0447\u0430\u0442\u0435" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h1", { className: "balda-title", children: hint && hintRevealed ? "\u041A\u0442\u043E \u043F\u0435\u0440\u0432\u044B\u0439?" : "\u041F\u0438\u0448\u0438 \u0441\u0432\u043E\u0451 \u0441\u043B\u043E\u0432\u043E \u0432 \u0447\u0430\u0442\u0435" }),
           /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "top-timer", children: phase === "collect" ? `00:${String(secs).padStart(2, "0")}` : phase === "apply" ? "\u043F\u043E\u0434\u0441\u0447\u0451\u0442\u2026" : "\u0444\u0438\u043D\u0430\u043B" }),
           /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "timer-bar", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "timer-fill", style: { width: `${fillPct}%` } }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "board-wrap", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "board", role: "grid", "aria-label": "\u0418\u0433\u0440\u043E\u0432\u043E\u0435 \u043F\u043E\u043B\u0435 5 \u043D\u0430 5", ref: boardElRef, children: view.board.map((letter, idx) => {
-            const inPath = (view.highlight.includes(idx) || hintLit === idx) && !view.pulse;
-            const isNew = view.newCell === idx;
-            const isHintQ = !letter && hint !== null && hint.newCell === idx && !hintRevealed;
-            const isHintGreen = !letter && hint !== null && hint.newCell === idx && hintRevealed;
-            const hintLetter = hint ? hint.word[hint.cells.indexOf(hint.newCell)] : "";
-            const isCoinActive = coin?.active === idx;
-            const cls = [
-              "cell",
-              letter ? "filled" : "",
-              inPath ? "in-path" : "",
-              isNew ? "fresh" : "",
-              isHintQ ? "hint-q" : "",
-              isHintGreen ? "hint-green" : "",
-              isCoinActive ? "coin-active" : ""
-            ].filter(Boolean).join(" ");
-            return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { "data-idx": idx, className: cls, role: "gridcell", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: letter || (isHintQ ? "?" : isHintGreen ? hintLetter : "") }),
-              isNew && activeNick ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("em", { className: "cell-nick", children: activeNick }) : null
-            ] }, idx);
-          }) }),
-          coin && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "coin-banner", children: [
-            "\u{1F3B2} ",
-            coin.nick,
-            ": \xAB",
-            coin.word,
-            "\xBB \u043C\u043E\u0436\u043D\u043E \u043F\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0432 ",
-            coin.candidates.length,
-            " \u043C\u0435\u0441\u0442\u0430 \u2014 \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u043C \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u2026"
-          ] })
-        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "board-wrap", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "board", role: "grid", "aria-label": "\u0418\u0433\u0440\u043E\u0432\u043E\u0435 \u043F\u043E\u043B\u0435 5 \u043D\u0430 5", ref: boardElRef, children: view.board.map((letter, idx) => {
+          const inPath = hintLit === idx && !view.pulse;
+          const isNew = view.newCell === idx;
+          const isHintQ = !letter && hint !== null && hint.newCell === idx && !hintRevealed;
+          const isHintGreen = !letter && hint !== null && hint.newCell === idx && hintRevealed;
+          const hintLetter = hint ? hint.word[hint.cells.indexOf(hint.newCell)] : "";
+          const isCoinActive = coin?.active === idx;
+          const cls = [
+            "cell",
+            letter ? "filled" : "",
+            inPath ? "in-path" : "",
+            isNew ? "fresh" : "",
+            isHintQ ? "hint-q" : "",
+            isHintGreen ? "hint-green" : "",
+            isCoinActive ? "coin-active" : ""
+          ].filter(Boolean).join(" ");
+          return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { "data-idx": idx, className: cls, role: "gridcell", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: letter || (isHintQ ? "?" : isHintGreen ? hintLetter : "") }),
+            isNew && activeNick ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("em", { className: "cell-nick", children: activeNick }) : null
+          ] }, idx);
+        }) }) }),
         /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "last-move", children: lastMove ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
           "\u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0445\u043E\u0434: ",
           /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("b", { children: lastMove.word }),
@@ -12351,19 +12340,23 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
         /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "rating", children: [
           /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { children: "\u0420\u0435\u0439\u0442\u0438\u043D\u0433" }),
           rating.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "rating-empty", children: "\u041E\u0447\u043A\u0438 \u043F\u043E\u044F\u0432\u044F\u0442\u0441\u044F \u043F\u043E\u0441\u043B\u0435 \u043F\u0435\u0440\u0432\u043E\u0433\u043E \u0440\u0430\u0443\u043D\u0434\u0430: \u0441\u043B\u043E\u0432\u043E = \u0441\u0442\u043E\u043B\u044C\u043A\u043E \u043E\u0447\u043A\u043E\u0432, \u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0432 \u043D\u0451\u043C \u0431\u0443\u043A\u0432." }),
-          rating.slice(0, 3).map(([name, pts], i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: `rating-row ${i < 3 ? "top" : ""}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "rating-pos", children: [
-              i + 1,
-              "."
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "rating-name", children: name }),
-            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "rating-pts", children: pts })
-          ] }, name))
+          rating.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "rating-cols", children: [0, 1].map((col) => {
+            const rows = rating.slice(col * 5, col * 5 + 5);
+            if (rows.length === 0) return null;
+            return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "rating-col", children: rows.map(([name, pts], i) => {
+              const pos = col * 5 + i;
+              return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: `rating-row ${pos < 3 ? "top" : ""}`, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "rating-pos", children: [
+                  pos + 1,
+                  "."
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "rating-name", children: name }),
+                /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "rating-pts", children: pts })
+              ] }, name);
+            }) }, col);
+          }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "round-line", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: phase === "collect" && queuedCount > 0 ? `\u0432 \u043E\u0447\u0435\u0440\u0435\u0434\u0438: ${queuedCount}` : "" }),
-          !cleanMode && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "restart-btn", onClick: restart, children: "\u0437\u0430\u043D\u043E\u0432\u043E" })
-        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "round-line", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: phase === "collect" && queuedCount > 0 ? `\u0432 \u043E\u0447\u0435\u0440\u0435\u0434\u0438: ${queuedCount}` : "" }) }),
         phase === "over" && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "overlay", children: [
           /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Confetti, {}),
           /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "overlay-card finale-card", children: [
@@ -12398,7 +12391,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
             /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "admin-min", onPointerDown: (e2) => e2.stopPropagation(), onClick: () => {
               setAdminHidden(true);
               setCleanMode(true);
-            }, title: "\u0420\u0435\u0436\u0438\u043C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u0438: \u0441\u043A\u0440\u044B\u0442\u044C \u0412\u0421\u0415 \u0441\u043B\u0443\u0436\u0435\u0431\u043D\u044B\u0435 \u043A\u043D\u043E\u043F\u043A\u0438, \u0432\u043A\u043B\u044E\u0447\u0430\u044F \u2699 \u0438 \xAB\u0437\u0430\u043D\u043E\u0432\u043E\xBB. \u0412\u0435\u0440\u043D\u0443\u0442\u044C \u2014 \u043A\u043B\u0430\u0432\u0438\u0448\u0430 Esc", children: "\u{1F4FA}" })
+            }, title: "\u0420\u0435\u0436\u0438\u043C \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u0438: \u0441\u043A\u0440\u044B\u0442\u044C \u0412\u0421\u0415 \u0441\u043B\u0443\u0436\u0435\u0431\u043D\u044B\u0435 \u043A\u043D\u043E\u043F\u043A\u0438, \u0432\u043A\u043B\u044E\u0447\u0430\u044F \u2699. \u0412\u0435\u0440\u043D\u0443\u0442\u044C \u2014 \u043A\u043B\u0430\u0432\u0438\u0448\u0430 Esc", children: "\u{1F4FA}" })
           ] }),
           !adminMin && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "admin-body", children: [
             /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "panel", children: [
@@ -12502,7 +12495,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
               /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { type: "range", min: 0, max: 1, step: 0.05, value: gameVol, onChange: (e2) => changeGameVol(Number(e2.target.value)), className: "vol-slider" })
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "panel", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "field-label", style: { marginTop: 12 }, children: "\u{1F3A8} \u0426\u0432\u0435\u0442 \u043F\u043E\u0434\u0441\u0432\u0435\u0442\u043A\u0438 \u0441\u043B\u043E\u0432\u0430" }),
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "field-label", style: { marginTop: 12 }, children: "\u{1F3A8} \u0410\u043A\u0446\u0435\u043D\u0442\u043D\u044B\u0439 \u0446\u0432\u0435\u0442" }),
               /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "color-row", children: [
                 /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
                   "input",
@@ -12528,7 +12521,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                 ),
                 /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "pbtn", onClick: () => commitAccent(DEFAULT_ACCENT), title: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0439 \u0446\u0432\u0435\u0442", children: "\u21BA" })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "hint", children: "\u0426\u0432\u0435\u0442 \u043D\u043E\u0432\u043E\u0439 \u0431\u0443\u043A\u0432\u044B, \u043F\u0440\u043E\u0431\u0435\u0433\u0430 \u043F\u043E \u0441\u043B\u043E\u0432\u0443 \u0438 \u043F\u0443\u043B\u044C\u0441\u0430. \u041A\u043E\u0434 \u043C\u043E\u0436\u043D\u043E \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0438 \u0432\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043F\u043E\u0437\u0436\u0435, \u0447\u0442\u043E\u0431\u044B \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0442\u043E\u0442 \u0436\u0435 \u043E\u0442\u0442\u0435\u043D\u043E\u043A." })
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "hint", children: "\u0426\u0432\u0435\u0442 \u043D\u043E\u0432\u043E\u0439 \u0431\u0443\u043A\u0432\u044B, \u0442\u0430\u0439\u043C\u0435\u0440\u0430, \u043E\u0447\u043A\u043E\u0432 \u0438 \u043A\u043D\u043E\u043F\u043E\u043A. \u041A\u043E\u0434 \u043C\u043E\u0436\u043D\u043E \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0438 \u0432\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043F\u043E\u0437\u0436\u0435, \u0447\u0442\u043E\u0431\u044B \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0442\u043E\u0442 \u0436\u0435 \u043E\u0442\u0442\u0435\u043D\u043E\u043A." })
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "panel", children: [
               /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "field-label", style: { marginTop: 12 }, children: "\u{1F4D0} \u0420\u0430\u0437\u043C\u0435\u0440 \u043F\u043B\u0438\u0442\u043A\u0438 (\u0432\u043E\u043B\u043D\u0430 \u0438 \u043F\u0443\u043B\u044C\u0441)" }),
@@ -12630,7 +12623,7 @@ Please change the parent <Route path="${parentPath}"> to <Route path="${parentPa
                   WORDS.size.toLocaleString("ru-RU"),
                   " \u0441\u043B\u043E\u0432. \u0415\u0441\u043B\u0438 \u0441\u043B\u043E\u0432\u043E \u0432\u0441\u0442\u0430\u0451\u0442 \u0432 \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u043C\u0435\u0441\u0442, \u043C\u0435\u0441\u0442\u043E \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u0442\u0441\u044F \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E."
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "hint", children: "\u0424\u0438\u043B\u044C\u0442\u0440 \u043C\u0430\u0442\u0430: \u043D\u0435\u043F\u0440\u0438\u0441\u0442\u043E\u0439\u043D\u044B\u0435 \u0441\u043B\u043E\u0432\u0430 \u0438 \u043D\u0438\u043A\u0438 \u043D\u0435 \u043F\u043E\u043F\u0430\u0434\u0430\u044E\u0442 \u0432 \u0438\u0433\u0440\u0443 \u0438 \u043B\u0435\u043D\u0442\u0443; \u043F\u0435\u0440\u0432\u043E\u0435 \u043D\u0430\u0440\u0443\u0448\u0435\u043D\u0438\u0435 \u2014 \u043F\u0440\u0435\u0434\u0443\u043F\u0440\u0435\u0436\u0434\u0435\u043D\u0438\u0435, \u0432\u0442\u043E\u0440\u043E\u0435 \u2014 \u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u043A\u0430 \u043D\u0438\u043A\u0430 \u0434\u043E \u043A\u043E\u043D\u0446\u0430 \u0442\u0435\u0441\u0442\u043E\u0432\u043E\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 (\u043A\u043D\u043E\u043F\u043A\u0430 \xAB\u0437\u0430\u043D\u043E\u0432\u043E\xBB \u0441\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442). \u0424\u0438\u043B\u044C\u0442\u0440 \u043D\u0435 \u0433\u0430\u0440\u0430\u043D\u0442\u0438\u0440\u0443\u0435\u0442 \u043F\u043E\u043B\u043D\u043E\u0433\u043E \u043F\u043E\u043A\u0440\u044B\u0442\u0438\u044F \u043E\u0431\u0445\u043E\u0434\u043E\u0432; \u043D\u0430\u0441\u0442\u043E\u044F\u0449\u0438\u0439 \u0431\u0430\u043D \u0432 \u0447\u0430\u0442\u0435 YouTube \u043F\u0440\u043E\u0442\u043E\u0442\u0438\u043F \u043D\u0435 \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442." }),
+                /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "hint", children: "\u0424\u0438\u043B\u044C\u0442\u0440 \u043C\u0430\u0442\u0430: \u043D\u0435\u043F\u0440\u0438\u0441\u0442\u043E\u0439\u043D\u044B\u0435 \u0441\u043B\u043E\u0432\u0430 \u0438 \u043D\u0438\u043A\u0438 \u043D\u0435 \u043F\u043E\u043F\u0430\u0434\u0430\u044E\u0442 \u0432 \u0438\u0433\u0440\u0443 \u0438 \u043B\u0435\u043D\u0442\u0443; \u043F\u0435\u0440\u0432\u043E\u0435 \u043D\u0430\u0440\u0443\u0448\u0435\u043D\u0438\u0435 \u2014 \u043F\u0440\u0435\u0434\u0443\u043F\u0440\u0435\u0436\u0434\u0435\u043D\u0438\u0435, \u0432\u0442\u043E\u0440\u043E\u0435 \u2014 \u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u043A\u0430 \u043D\u0438\u043A\u0430 \u0434\u043E \u043A\u043E\u043D\u0446\u0430 \u0442\u0435\u0441\u0442\u043E\u0432\u043E\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 (\u0441\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442\u0441\u044F \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u043E\u0439 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u044B). \u0424\u0438\u043B\u044C\u0442\u0440 \u043D\u0435 \u0433\u0430\u0440\u0430\u043D\u0442\u0438\u0440\u0443\u0435\u0442 \u043F\u043E\u043B\u043D\u043E\u0433\u043E \u043F\u043E\u043A\u0440\u044B\u0442\u0438\u044F \u043E\u0431\u0445\u043E\u0434\u043E\u0432; \u043D\u0430\u0441\u0442\u043E\u044F\u0449\u0438\u0439 \u0431\u0430\u043D \u0432 \u0447\u0430\u0442\u0435 YouTube \u043F\u0440\u043E\u0442\u043E\u0442\u0438\u043F \u043D\u0435 \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442." }),
                 /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("img", { className: "mockup-img", src: mockup_default, alt: "\u041C\u0430\u043A\u0435\u0442 \u0437\u0435\u043B\u0451\u043D\u043E\u0439 \u0442\u0435\u043C\u044B \u0411\u0430\u043B\u0434\u044B" }),
                 /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "hint", children: "\u041C\u0430\u043A\u0435\u0442, \u043F\u043E \u043A\u043E\u0442\u043E\u0440\u043E\u043C\u0443 \u0441\u043E\u0431\u0440\u0430\u043D\u0430 \u0437\u0435\u043B\u0451\u043D\u0430\u044F \u0442\u0435\u043C\u0430." })
               ] })
